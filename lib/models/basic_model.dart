@@ -18,7 +18,7 @@ class BasicModel{
       BasicModel(
         name: 'Temperatura Ambiente', 
         value: '', 
-        boxColor: Color(0xffC58BF2)
+        boxColor: Color(0xffC8E6C9)
         )
     );
 
@@ -26,7 +26,7 @@ class BasicModel{
       BasicModel(
         name: 'Temperatura Percibida', 
         value: '', 
-        boxColor: Color(0xff92A3FD)
+        boxColor: Color(0xffC8E6C9)
         )
     );
 
@@ -34,7 +34,7 @@ class BasicModel{
       BasicModel(
         name: 'Intensidad', 
         value: '', 
-        boxColor: Color(0xff92A3FD)
+        boxColor: Color(0xffC8E6C9)
         )
     );
 
@@ -42,7 +42,7 @@ class BasicModel{
       BasicModel(
         name: 'Humedad', 
         value: '', 
-        boxColor: Color(0xffC58BF2)
+        boxColor: Color(0xffC8E6C9)
         )
     );
 

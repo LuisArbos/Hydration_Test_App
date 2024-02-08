@@ -18,7 +18,7 @@ class CalculModel{
       CalculModel(
         name: 'Peso Antes del Ejercicio', 
         value: 0.0, 
-        boxColor: Color(0xffC58BF2)
+        boxColor: Color(0xffC8E6C9)
         )
     );
 
@@ -26,7 +26,7 @@ class CalculModel{
       CalculModel(
         name: 'Peso después del ejercicio', 
         value: 0.0, 
-        boxColor: Color(0xff92A3FD)
+        boxColor: Color(0xffC8E6C9)
         )
     );
 
@@ -34,7 +34,7 @@ class CalculModel{
       CalculModel(
         name: 'Líquido disponible antes del ejercicio', 
         value: 0.0, 
-        boxColor: Color(0xff92A3FD)
+        boxColor: Color(0xffC8E6C9)
         )
     );
 
@@ -42,7 +42,7 @@ class CalculModel{
       CalculModel(
         name: 'Liquido restante POST ejercicio', 
         value: 0.0, 
-        boxColor: Color(0xffC58BF2)
+        boxColor: Color(0xffC8E6C9)
         )
     );
 
@@ -50,7 +50,7 @@ class CalculModel{
       CalculModel(
         name: 'Volumen de orina (L)', 
         value: 0.0, 
-        boxColor: Color(0xffC58BF2)
+        boxColor: Color(0xffC8E6C9)
         )
     );
 
@@ -58,7 +58,7 @@ class CalculModel{
       CalculModel(
         name: 'Duración del ejercicio (min)', 
         value: 0.0, 
-        boxColor: Color(0xff92A3FD)
+        boxColor: Color(0xffC8E6C9)
         )
     );
 

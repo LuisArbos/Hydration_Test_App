@@ -1,7 +1,10 @@
-import 'package:ali_app/models/basic_model.dart';
-import 'package:ali_app/models/calcul_model.dart';
+import 'dart:io';
+
+import 'package:Hydration_Test_App/models/basic_model.dart';
+import 'package:Hydration_Test_App/models/calcul_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:file_picker/file_picker.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});
@@ -18,6 +21,8 @@ class _HomePageState extends State<HomePage> {
   Map<String, String> valuesMap = {};
   double perdida_peso_porcen = 0.0;
   double tasa_sudoracion = 0.0;
+  TextEditingController _filePathController = TextEditingController();
+
 
   void _getData() {
     basics = BasicModel.getBasics();
@@ -46,7 +51,8 @@ class _HomePageState extends State<HomePage> {
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          child: Text('Cerrar'),
+                          child: Text('Cerrar',
+                          style: TextStyle(color: Colors.green.withOpacity(0.8))),
                           ),
                       ],
                     );
@@ -78,6 +84,7 @@ class _HomePageState extends State<HomePage> {
     _getData();
     _dateController.text = DateFormat('dd-MM-yyyy').format(DateTime.now());
     _timeController.text = DateFormat('HH:mm').format(DateTime.now());
+
     return Scaffold(
       appBar: appBar(),
       backgroundColor: Colors.white,
@@ -86,6 +93,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           _informationSection(),
           SizedBox(height: 20,),
+          _buildExtraBar(context),
           _basicsSection(),
           SizedBox(height: 20,),
           _calculSection(),
@@ -112,7 +120,8 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      child: Text('Cerrar'),
+                      child: Text('Cerrar',
+                      style: TextStyle(color: Colors.green.withOpacity(0.8))),
                       ),
                   ],
                 );
@@ -120,7 +129,8 @@ class _HomePageState extends State<HomePage> {
             );
           }
           },
-          child: Text('Calcular'),
+          child: Text('Calcular',
+            style: TextStyle(color: Colors.green.withOpacity(0.8))),
         );
   }
 
@@ -388,6 +398,71 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Widget _buildExtraBar(BuildContext context) {
+    List<Widget> extraBar = [];
+    if (Platform.isWindows) {
+      extraBar.add(SizedBox(height: 50, child: _extraBar()));
+      extraBar.add(const SizedBox(height: 10));
+    }
+    return Column(children: extraBar);
+  }
+
+  Widget _extraBar() {
+    return Container(
+      margin: EdgeInsets.only(top: 10, left: 20, right: 20),
+      decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                color: Color(0xff1F1617).withOpacity(0.11),
+                blurRadius: 40,
+                spreadRadius: 0.0
+                )
+              ],
+            ),
+      alignment: Alignment.center,
+      child: Row(
+      children: [
+        Expanded(
+          child: TextField(
+            controller: _filePathController,
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.white,
+              contentPadding: EdgeInsets.all(15),
+              hintText: 'Direción del archivo Excel para guardar los datos',
+              hintStyle: TextStyle(
+                color: Color(0xffDDDADA),
+                fontSize: 14,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+                borderSide: BorderSide.none,
+              ),
+            ),
+            style: TextStyle(
+              fontSize: 13, // Adjust the font size as needed
+            ),
+          ),
+        ),
+        SizedBox(width: 10), // Spacer between TextField and Button
+        IconButton(
+          icon: Icon(Icons.folder_open), // Icon for file picker
+          onPressed: () async {
+            String? filePath = await FilePicker.platform.pickFiles(
+              type: FileType.custom,
+              allowedExtensions: ['xls', 'xlsx'], // Allow only Excel files
+            ).then((value) => value?.files.single.path);
+            
+            if (filePath != null) {
+              _filePathController.text = filePath;
+            }
+          },
+        ),
+      ],
+    ),
+    );
+  }
+
   AppBar appBar() {
     return AppBar(
       title: Text(
@@ -404,3 +479,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+
+  
